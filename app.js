@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
@@ -32,10 +33,10 @@ app.post("/", function(req, res) {
   var jsonData = JSON.stringify(data);
 
   var options = {
-    url: "https://us2.api.mailchimp.com/3.0/lists/f801d30da0",
+    url: process.env.API_URL,
     method: "POST",
     headers: {
-      "Authorization": "marwan 4dc597061ced7661351682b77ede9aa5-us2"
+      "Authorization": process.env.API_HEADER_AUTH
     },
     body: jsonData,
   };
@@ -63,6 +64,3 @@ app.post("/failure", function(req, res){
 app.listen(process.env.PORT || 3000, function() {
   console.log("Server's running...");
 });
-
-// 4dc597061ced7661351682b77ede9aa5-us2
-// f801d30da0
